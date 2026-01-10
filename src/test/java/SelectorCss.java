@@ -12,8 +12,8 @@ public class SelectorCss {
     @Test
     public void phoneBookTest(){
         driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));//sets time for page loading, if it doesn't load throws error
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); //time for waiting to searching elements on the page
         //driver.get("https://telranedu.web.app/home"); //use when you want to enter page first hour
         driver.navigate().to("https://telranedu.web.app/home"); //use when you want to enter the page which you have already visited(from history)
         WebElement btnAbout = driver.findElement(By.cssSelector("a[href='/about']"));
@@ -38,6 +38,35 @@ public class SelectorCss {
         driver.quit();//close the driver and all associated windows
     }
 
+    @Test
+    public void iLcarroTest(){
+        driver.manage().window().maximize();
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+        driver.get("https://ilcarro.web.app/search");
+        pause(2);
+        WebElement btnSearch = driver.findElement(By.cssSelector("a[id='0']"));
+        btnSearch.click();
+        pause(2);
+        WebElement btnLetCarWork = driver.findElement(By.cssSelector("a[id='1']"));
+        btnLetCarWork.click();
+        pause(2);
+        WebElement btnTermsOfUse = driver.findElement(By.cssSelector("a[id='2']"));
+        btnTermsOfUse.click();
+        pause(2);
+        WebElement btnSignUp = driver.findElement(By.cssSelector("a[href*='/registration?']"));
+        btnSignUp.click();
+        pause(2);
+        WebElement btnLogin = driver.findElement(By.cssSelector("a[href*='/login?']"));
+        btnLogin.click();
+        pause(2);
+
+        driver.navigate().to("https://ilcarro.web.app/search");
+        pause(2);
+        driver.quit();
+    }
+
+
+
     static void pause(int time){
         try {
             Thread.sleep(time*1000);
@@ -45,6 +74,7 @@ public class SelectorCss {
             throw new RuntimeException(e);
         }
     }
+
 
     //hm: сделать еще один тест, открыть сайт, найти элементы штук 10 с id, class, click, back to main page
     //прислать ссылку на гитхаб
