@@ -57,6 +57,46 @@ public class SelectorsXpath {
 
     }
 
+    @Test
+    public void iLcarroXpathTest(){
+        driver.manage().window().maximize();
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.get("https://ilcarro.web.app/search");
+        pause(2);
+
+        //go to the login page
+        WebElement btnLogin = driver.findElement(By.xpath("//a[contains(text(), 'Log in')]"));
+        btnLogin.click();
+        pause(2);
+
+        //fill email field
+        WebElement fieldEmail = driver.findElement(By.xpath("//input[@id='email']"));
+        fieldEmail.sendKeys("harry@gmail.com");
+
+        //fill password field
+        WebElement fieldPass = driver.findElement(By.xpath("//input[@id='password']"));
+        fieldPass.sendKeys("Pass1234!");
+        pause(2);
+
+        //click yalla btn (log in)
+        WebElement btnYalla = driver.findElement(By.xpath("//button[contains(text(), 'Y’alla!')]"));
+        btnYalla.click();
+        pause(2);
+
+        //click Ok on window "Logged in"
+        WebElement btnOk = driver.findElement(By.xpath("//button[contains(text(), 'Ok')]"));
+        btnOk.click();
+        pause(4);
+
+        //log out
+        WebElement btnLogout = driver.findElement(By.xpath("//a[contains(text(), 'Logout')]"));
+        btnLogout.click();
+        pause(4);
+
+        driver.quit();
+    }
+
     static void pause(int time){
         try {
             Thread.sleep(time*1000);
