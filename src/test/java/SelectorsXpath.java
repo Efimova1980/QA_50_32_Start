@@ -8,6 +8,8 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Random;
 
+import static tools.testUtils.*;
+
 public class SelectorsXpath {
     WebDriver driver = new ChromeDriver();
 
@@ -66,7 +68,9 @@ public class SelectorsXpath {
         pause(2);
 
         //go to the login page
-        WebElement btnLogin = driver.findElement(By.xpath("//a[contains(text(), 'Log in')]"));
+        //WebElement btnLogin = driver.findElement(By.xpath("//a[text() = 'Log in']"));
+        //WebElement btnLogin = driver.findElement(By.xpath("//a[contain(text() , 'Log in']"));
+        WebElement btnLogin = driver.findElement(By.xpath("//a[@ng-reflect-router-link='login']"));
         btnLogin.click();
         pause(2);
 
@@ -75,33 +79,37 @@ public class SelectorsXpath {
         fieldEmail.sendKeys("harry@gmail.com");
 
         //fill password field
+        // //form/div[last()]/input
         WebElement fieldPass = driver.findElement(By.xpath("//input[@id='password']"));
         fieldPass.sendKeys("Pass1234!");
         pause(2);
 
         //click yalla btn (log in)
-        WebElement btnYalla = driver.findElement(By.xpath("//button[contains(text(), 'Y’alla!')]"));
+        WebElement btnYalla = driver.findElement(By.xpath("//button[text() = 'Y’alla!']"));
         btnYalla.click();
         pause(2);
 
         //click Ok on window "Logged in"
-        WebElement btnOk = driver.findElement(By.xpath("//button[contains(text(), 'Ok')]"));
+        WebElement btnOk = driver.findElement(By.xpath("//button[text() = 'Ok']"));
         btnOk.click();
         pause(4);
 
         //log out
-        WebElement btnLogout = driver.findElement(By.xpath("//a[contains(text(), 'Logout')]"));
+        WebElement btnLogout = driver.findElement(By.xpath("//a[text() = ' Logout ']"));
         btnLogout.click();
         pause(4);
 
         driver.quit();
+
+        /// //input[@id='password']/../.. - проход вверх по дереву
+        // //button[start-with(text(), "Yal")]
     }
 
-    static void pause(int time){
-        try {
-            Thread.sleep(time*1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    static void pause(int time){
+//        try {
+//            Thread.sleep(time*1000);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 }
